@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 <div class="container">
@@ -13,6 +14,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="username" class="form-control" placeholder="Username"
                             autofocus="true"></form:input>
+                <br>
                 <form:errors path="username"></form:errors>
             </div>
         </spring:bind>
@@ -20,6 +22,7 @@
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                <br>
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
@@ -28,9 +31,18 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="passwordConfirm" class="form-control"
                             placeholder="Confirm your password"></form:input>
+                <br>
                 <form:errors path="passwordConfirm"></form:errors>
             </div>
         </spring:bind>
+
+        <div class="g-recaptcha col-sm-5" data-sitekey="${site}"></div>
+        <c:if test="${not empty captchaError}">
+            <div class="alert alert-danger">
+                    <%--TODO: zienic na messae--%>
+                <strong>Danger!</strong> ${captchaError}
+            </div>
+        </c:if>
 
         <p></p>
         <button class="btn-success btn-large" type="submit">Submit</button>

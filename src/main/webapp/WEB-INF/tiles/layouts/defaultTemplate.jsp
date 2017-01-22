@@ -13,9 +13,17 @@
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
+    <style>
+        body  {
+            background-image: url("/img/back.png");
+            background-color: #cccccc;
+        }
+    </style>
             <tiles:insertAttribute name="header"/>
             <tiles:insertAttribute name="menu"/>
-            <tiles:insertAttribute name="body"/>
+            <div class="cbody">
+                <tiles:insertAttribute name="body"/>
+            </div>
             <tiles:insertAttribute name="footer"/>
     </body>
 </html>

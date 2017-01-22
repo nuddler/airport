@@ -2,6 +2,7 @@ package com.example.bdlugosz.airport.validator;
 
 import com.example.bdlugosz.airport.model.User;
 import com.example.bdlugosz.airport.service.UserService;
+import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -35,6 +36,12 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "Size");
         }
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+        if (user.getPassword().length() < 5 || user.getPassword().length() > 32) {
+            errors.rejectValue("email", "Size");
+        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty");
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff");
         }

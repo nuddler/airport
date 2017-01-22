@@ -18,15 +18,30 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private ConfirmationAccountService confirmationAccountService;
+
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roleRepository.findAll()));
+        String token = confirmationAccountService.generateToken(user);
+        user.setToken(token);
         userRepository.save(user);
     }
 
     @Override
+    public void update(User user) {
+        userRepository.save(user);
+    };
+
+    @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findByToken(String token) {
+        return userRepository.findByToken(token);
     }
 }

@@ -1,5 +1,7 @@
-package com.example.bdlugosz.airport;
+package com.example.bdlugosz.airport.config;
 
+import it.ozimov.springboot.templating.mail.service.EmailService;
+import it.ozimov.springboot.templating.mail.service.EmailServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -9,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class BeansConfig {
-
 
     @Bean
     public CaptchaSettings captchaSettings() {

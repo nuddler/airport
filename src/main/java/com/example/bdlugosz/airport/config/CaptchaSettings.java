@@ -1,4 +1,4 @@
-package com.example.bdlugosz.airport;
+package com.example.bdlugosz.airport.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

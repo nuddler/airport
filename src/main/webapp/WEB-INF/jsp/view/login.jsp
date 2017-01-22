@@ -4,27 +4,42 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-
 <div class="container">
 
-    <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
-
-
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-            <div class="percentage text-center">
-                <span>${message}</span>
-                <input name="username" type="text" class="form-control " placeholder="Username"
-                       autofocus="true"/>
-                <input name="password" type="password" class="form-control" placeholder="Password"/>
-                <span>${error}</span>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <p></p>
-                <button class="percentage btn-success btn-large" type="submit">Log In</button>
-                <h4 class="text-center"><a href="${contextPath}/registration" class="btn btn-info btn-large">Create an account</a></h4>
-            </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form method="POST" action="${contextPath}/login" class="form-signin">
+                <fieldset>
+                    <h2>Please Sign In</h2>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input name="username" type="text" class="form-control input-lg" placeholder="Username"
+                               autofocus="true"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control input-lg"
+                               placeholder="Password">
+                    </div>
+                    <span>${error}</span>
+                    <br>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<span class="button-checkbox">
+					<button type="button" class="btn" data-color="info">Remember Me</button>
+                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+					<a href="" class="btn btn-link pull-right">Forgot Password?</a>
+				</span>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="${contextPath}/registration" class="btn btn-lg btn-primary btn-block">Register</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-
-    </form>
+    </div>
 
 </div>

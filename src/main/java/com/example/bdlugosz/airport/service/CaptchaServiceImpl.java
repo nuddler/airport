@@ -1,6 +1,6 @@
 package com.example.bdlugosz.airport.service;
 
-import com.example.bdlugosz.airport.CaptchaSettings;
+import com.example.bdlugosz.airport.config.CaptchaSettings;
 import com.example.bdlugosz.airport.GoogleResponse;
 import com.example.bdlugosz.airport.ReCaptchaInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;

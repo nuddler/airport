@@ -9,20 +9,20 @@
 </head>
 <div class="container">
 
-    |<spring:message code="app.welcome" />|
-    |<spring:message code="NotEmpty" />|
+    |<spring:message code="app.welcome"/>|
+    |<spring:message code="NotEmpty"/>|
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+        </h2>
         <h3>Roles - ${pageContext.request.userPrincipal.principal.authorities}</h3>
-        
-        <ul>
-			<li><a href="/participant/managemnent">Zarządzaj zawodnikami</a></li>
-		</ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="/airplanes/managemnent">Zarządzanie samolotami</a></li>
+        </ul>
     </c:if>
 
 </div>

@@ -1,9 +1,10 @@
 package com.example.bdlugosz.airport.controller;
 
-import com.example.bdlugosz.airport.CaptchaSettings;
+import com.example.bdlugosz.airport.config.CaptchaSettings;
 import com.example.bdlugosz.airport.ReCaptchaInvalidException;
 import com.example.bdlugosz.airport.model.User;
 import com.example.bdlugosz.airport.service.CaptchaService;
+import com.example.bdlugosz.airport.service.ConfirmationAccountService;
 import com.example.bdlugosz.airport.service.SecurityService;
 import com.example.bdlugosz.airport.service.UserService;
 import com.example.bdlugosz.airport.validator.UserValidator;
@@ -34,6 +35,9 @@ public class UserController {
     @Autowired
     private CaptchaService captchaService;
 
+    @Autowired
+    private ConfirmationAccountService confirmationAccountService;
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -62,10 +66,9 @@ public class UserController {
         }
 
         userService.save(userForm);
+        confirmationAccountService.sendEmail(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-        return "redirect:/welcome";
+        return "tokenSent";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -79,7 +82,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value={"", "/", "/welcome","hello"})
     public String welcome(Model model) {
         return "welcome";
     }

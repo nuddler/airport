@@ -1,11 +1,14 @@
-package com.example.bdlugosz.airport;
+package com.example.bdlugosz.airport.config;
 
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -116,7 +119,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //			ErrorPage error405Page = new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/405.html");
 //			ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
 //
-//			container.addErrorPages(error401Page, error403Page, error404Page, error405Page, error500Page,error400Page);
+//			//container.addErrorPages(error401Page, error403Page, error404Page, error405Page, error500Page,error400Page);
 //		});
 //	}
 }

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.example.bdlugosz.airport", "it.ozimov.springboot"})
 public class PlywalniaAppApplication extends SpringBootServletInitializer {
 
     @Override

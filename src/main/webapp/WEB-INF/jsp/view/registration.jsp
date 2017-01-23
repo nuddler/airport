@@ -7,16 +7,16 @@
 
 
 <div class="container">
-
     <form:form method="POST" modelAttribute="userForm" class="form-horizontal">
         <fieldset>
-            <h2 class="form-signin-heading">Create your account</h2>
+            <h2 class="form-signin-heading"><spring:message code="registration.title"/></h2>
             <spring:bind path="username">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-md-4 control-label" for="username">Username</label>
+                    <spring:message code="user.username" var="username"/>
+                    <label class="col-md-4 control-label" for="username">${username}</label>
 
                     <div class="col-md-4">
-                        <form:input type="text" path="username" class="form-control input-md" placeholder="Username"
+                        <form:input type="text" path="username" class="form-control input-md" placeholder="${username}"
                                     required=""
                                     autofocus="true"></form:input>
                         <br>
@@ -27,10 +27,12 @@
 
             <spring:bind path="password">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-md-4 control-label" for="password">Password</label>
+                    <spring:message code="user.password" var="password"/>
+                    <label class="col-md-4 control-label" for="password">${password}</label>
 
                     <div class="col-md-4">
-                        <form:input type="password" path="password" class="form-control input-md" placeholder="Password"
+                        <form:input type="password" path="password" class="form-control input-md"
+                                    placeholder="${password}"
                                     required=""
                                     autofocus="true"></form:input>
                         <br>
@@ -41,11 +43,12 @@
 
             <spring:bind path="passwordConfirm">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-md-4 control-label" for="passwordConfirm">passwordConfirm</label>
+                    <spring:message code="user.password.confirm" var="passwordConfirm"/>
+                    <label class="col-md-4 control-label" for="passwordConfirm">${passwordConfirm}</label>
 
                     <div class="col-md-4">
                         <form:input type="password" path="passwordConfirm" class="form-control input-md"
-                                    placeholder="passwordConfirm"
+                                    placeholder="${passwordConfirm}"
                                     required=""
                                     autofocus="true"></form:input>
                         <br>
@@ -56,10 +59,11 @@
 
             <spring:bind path="email">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-md-4 control-label" for="passwordConfirm">email</label>
+                    <spring:message code="user.email" var="email"/>
+                    <label class="col-md-4 control-label" for="passwordConfirm">${email}</label>
 
                     <div class="col-md-4">
-                        <form:input type="email" path="email" class="form-control input-md" placeholder="email"
+                        <form:input type="email" path="email" class="form-control input-md" placeholder="${email}"
                                     required=""
                                     autofocus="true"></form:input>
                         <br>
@@ -74,10 +78,7 @@
                 <div class="col-md-4">
                     <div class="g-recaptcha" data-sitekey="${site}"></div>
                     <c:if test="${not empty captchaError}">
-                        <div class="alert alert-danger">
-                                <%--TODO: zienic na messae--%>
-                            <strong>Danger!</strong> ${captchaError}
-                        </div>
+                        <div class="alert alert-danger">${captchaError}</div>
                     </c:if>
                 </div>
             </div>
@@ -87,8 +88,8 @@
                 <label class="col-md-4 control-label" for="singlebutton"></label>
 
                 <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton" class="btn btn-lg btn-primary btn-block">Submit
-                    </button>
+                    <button id="singlebutton" name="singlebutton" class="btn btn-lg btn-primary btn-block">
+                        <spring:message code="registration.submit"/></button>
                 </div>
             </div>
         </fieldset>

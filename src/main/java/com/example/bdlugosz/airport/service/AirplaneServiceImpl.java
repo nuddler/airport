@@ -10,36 +10,36 @@ import java.util.List;
 @Service
 public class AirplaneServiceImpl implements AirplaneService {
 
-	@Autowired
-	private AirplaneRepository airplaneRepository;
-	
-	@Override
-	public List<Airplane> getAllAirplanes() {
-		return airplaneRepository.findAll();
-	}
+    @Autowired
+    private AirplaneRepository airplaneRepository;
 
-	@Override
-	public Airplane findAirplaneByName(String name) {
-		return airplaneRepository.findAirplaneByName(name);
-	}
+    @Override
+    public List<Airplane> getAllAirplanes() {
+        return airplaneRepository.findAll();
+    }
 
-	@Override
-	public Airplane findAirplaneById(Long id) {
-		return airplaneRepository.findAirplaneById(id);
-	}
+    @Override
+    public Airplane findAirplaneByName(String name) {
+        return airplaneRepository.findAirplaneByName(name);
+    }
 
-	@Override
-	public void removeAirplane(Long id) {
-		airplaneRepository.delete(id);
-	}
+    @Override
+    public Airplane findAirplaneById(Long id) {
+        return airplaneRepository.findAirplaneById(id);
+    }
 
-	@Override
-	public void createAirplane(Airplane p) {
-		airplaneRepository.save(p);
-	}
+    @Override
+    public void removeAirplane(Long id) {
+        airplaneRepository.delete(id);
+    }
 
-	@Override
-	public void edit(Airplane airplane) {
-		airplaneRepository.save(airplane);
-	}
+    @Override
+    public void createAirplane(Airplane p) {
+        airplaneRepository.save(p);
+    }
+
+    @Override
+    public void edit(Airplane airplane) {
+        airplaneRepository.save(airplane);
+    }
 }

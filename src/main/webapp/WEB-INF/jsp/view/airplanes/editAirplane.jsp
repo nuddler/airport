@@ -6,21 +6,21 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <head>
-    <title>Edytuj samolot</title>
+    <title><spring:message code="airplanes.title"/></title>
 </head>
 <div class="container">
-    <h1 style="text-align: center;">Edytuj samolot: </h1>
+    <h1 style="text-align: center;"><spring:message code="airplanes.edit.title"/></h1>
 
-    <form:form method="POST" modelAttribute="airplane" class="form-horizontal">
+    <form:form method="POST" modelAttribute="airplane" class="form-horizontal back">
     <fieldset>
-        <h2 class="form-signin-heading">title</h2>
         <spring:bind path="numberOfSeats">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-md-4 control-label" for="numberOfSeats">numberOfSeats</label>
+                <spring:message code="airplanes.number.of.seats" var="numberOfSeats"/>
+                <label class="col-md-4 control-label" for="numberOfSeats">${numberOfSeats}</label>
 
                 <div class="col-md-4">
                     <form:input type="text" path="numberOfSeats" class="form-control input-md"
-                                placeholder="numberOfSeats"
+                                placeholder="${numberOfSeats}"
                                 required=""
                                 autofocus="true"></form:input>
                     <br>
@@ -31,10 +31,11 @@
 
         <spring:bind path="name">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-md-4 control-label" for="name">name</label>
+                <spring:message code="airplanes.number.of.seats" var="numberOfSeats"/>
+                <label class="col-md-4 control-label" for="name">${numberOfSeats}</label>
 
                 <div class="col-md-4">
-                    <form:input type="text" path="name" class="form-control input-md" placeholder="name"
+                    <form:input type="text" path="name" class="form-control input-md" placeholder="${numberOfSeats}"
                                 required=""
                                 autofocus="true"></form:input>
                     <br>
@@ -48,7 +49,8 @@
             <label class="col-md-4 control-label" for="singlebutton"></label>
 
             <div class="col-md-4">
-                <button id="singlebutton" name="singlebutton" class="btn btn-lg btn-primary btn-block">Submit</button>
+                <button id="singlebutton" name="singlebutton" class="btn btn-lg btn-primary btn-block"><spring:message
+                        code="airplanes.edit.submit"/></button>
             </div>
         </div>
     </fieldset>

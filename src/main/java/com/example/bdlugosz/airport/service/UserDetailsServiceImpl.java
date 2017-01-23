@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsernameAndActivated(username,true);
+        User user = userRepository.findByUsernameAndActivated(username, true);
 
 //        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 //        for (Role role : user.getRoles()){
@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //        }
 
         //TODO: LOOK
-        if(user == null || user.getRoles() == null) {
+        if (user == null || user.getRoles() == null) {
             log.error("User or roles are null!!");
             throw new UsernameNotFoundException("User or roles are null!!");
         }

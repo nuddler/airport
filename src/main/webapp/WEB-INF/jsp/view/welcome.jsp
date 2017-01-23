@@ -5,24 +5,17 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <head>
-    <title>Create an account</title>
+    <title><spring:message code="app.welcome.title"/></title>
 </head>
 <div class="container">
+    <div class="back">
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
 
-    |<spring:message code="app.welcome"/>|
-    |<spring:message code="NotEmpty"/>|
-
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
-        <h3>Roles - ${pageContext.request.userPrincipal.principal.authorities}</h3>
-        <ul class="nav navbar-nav navbar-left">
-            <li><a href="/airplanes/managemnent">Zarządzanie samolotami</a></li>
-        </ul>
-    </c:if>
-
+            <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
+            <h3>Roles - ${pageContext.request.userPrincipal.principal.authorities}</h3>
+        </c:if>
+    </div>
 </div>

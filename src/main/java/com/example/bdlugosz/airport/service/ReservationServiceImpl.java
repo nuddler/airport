@@ -10,36 +10,36 @@ import java.util.List;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
-	@Autowired
-	private ReservationRepository reservationRepository;
-	
-	@Override
-	public List<Reservation> getAllReservations() {
-		return reservationRepository.findAll();
-	}
+    @Autowired
+    private ReservationRepository reservationRepository;
 
-	@Override
-	public Reservation findReservationByName(String name) {
-		return reservationRepository.findReservationByName(name);
-	}
+    @Override
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
+    }
 
-	@Override
-	public Reservation findReservationById(Long id) {
-		return reservationRepository.findReservationById(id);
-	}
+    @Override
+    public Reservation findReservationByName(String name) {
+        return reservationRepository.findReservationByName(name);
+    }
 
-	@Override
-	public void removeReservation(Long id) {
-		reservationRepository.delete(id);
-	}
+    @Override
+    public Reservation findReservationById(Long id) {
+        return reservationRepository.findReservationById(id);
+    }
 
-	@Override
-	public void createReservation(Reservation p) {
-		reservationRepository.save(p);
-	}
+    @Override
+    public void removeReservation(Long id) {
+        reservationRepository.delete(id);
+    }
 
-	@Override
-	public void edit(Reservation reservation) {
-		reservationRepository.save(reservation);
-	}
+    @Override
+    public void createReservation(Reservation p) {
+        reservationRepository.save(p);
+    }
+
+    @Override
+    public void edit(Reservation reservation) {
+        reservationRepository.save(reservation);
+    }
 }

@@ -38,9 +38,9 @@ public class ConfirmationAccountServiceImpl implements ConfirmationAccountServic
         try {
             email = EmailImpl.builder()
                     .from(new InternetAddress("mymail@mail.co.uk"))
-                    .replyTo(new InternetAddress("someone@localhost"))
                     .to(Lists.newArrayList(new InternetAddress(userForm.getEmail())))
-                    .subject("Lorem ipsum")
+                    //todo zmienić na message
+                    .subject("Link aktywacyjny")
                     .body("http://airport.pl:8080/confirmation?token=" + userForm.getToken() + "\n" +
                             "Username: " + userForm.getUsername() + "\n" +
                             "Password: " + userForm.getPasswordConfirm())

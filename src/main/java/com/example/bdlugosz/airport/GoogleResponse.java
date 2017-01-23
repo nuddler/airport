@@ -9,7 +9,7 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonPropertyOrder({ "success", "challenge_ts", "hostname", "error-codes" })
+@JsonPropertyOrder({"success", "challenge_ts", "hostname", "error-codes"})
 public class GoogleResponse {
 
     @JsonProperty("success")
@@ -87,9 +87,9 @@ public class GoogleResponse {
         }
         for (final ErrorCode error : errors) {
             switch (error) {
-            case InvalidResponse:
-            case MissingResponse:
-                return true;
+                case InvalidResponse:
+                case MissingResponse:
+                    return true;
             }
         }
         return false;

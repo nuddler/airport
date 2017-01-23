@@ -1,10 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <head>
-    <title>Lista samolotów</title>
+    <title><spring:message code="airplanes.title"/></title>
 </head>
 
 
@@ -18,8 +19,8 @@
 
     </br>
     <c:if test="${needsShowListButton eq true}">
-        <a href="/airplanes/list">
-            <button class="btn btn-default">Pełna lista samolotów</button>
+        <a class="back" href="/airplanes/list">
+            <button class="btn btn-default"><spring:message code="airplanes.list.full"/></button>
         </a>
         </br>
     </c:if>
@@ -36,22 +37,22 @@
 
     <c:choose>
         <c:when test="${airplanes eq null or airplanes.size() == 0}">
-            <h1>Brak airplanes.</h1>
+            <h1 class="back"><spring:message code="airplanes.list.empty"/></h1>
             <c:if test="${wasFinding != true}">
                 <!-- Jesli nie szukalismy (filtrowalismy), oznacza to ze w calej liscie nie ma participantow. Mozna dodac nowych -->
                 <a href="/airplanes/add">
-                    <button class="btn btn-default">Dodaj samolot</button>
+                    <button class="btn btn-default"><spring:message code="airplanes.add"/></button>
                 </a>
             </c:if>
         </c:when>
 
         <c:otherwise>
-            <p>Lista airplanes: </p>
-            <table class="table table-hover" style="width: 100%">
+            <p class="back"><spring:message code="airplanes.list.title"/></p>
+            <table class="table table-hover back" style="width: 100%">
                 <tr>
-                    <th>ID</th>
-                    <th>Nazwa</th>
-                    <th>numberofseats</th>
+                    <th><spring:message code="airplanes.id"/></th>
+                    <th><spring:message code="airplanes.name"/></th>
+                    <th><spring:message code="airplanes.number.of.seats"/></th>
 
                 </tr>
 
@@ -61,14 +62,13 @@
                         <td>${airplane.name}</td>
                         <td>${airplane.numberOfSeats}</td>
                         <td><a href="/airplanes/edit/${airplane.id}">
-                            <button class="btn btn-info">Edytuj</button>
+                            <button class="btn btn-info"><spring:message code="airplanes.edit.submit"/></button>
                         </a></td>
                         <td>
-                            <form action="/airplanes/remove" method="POST"
-                                  onsubmit="return validate(this);">
+                            <form action="/airplanes/remove" method="POST" onsubmit="return validate(this);">
                                 <input type="hidden" name="id" value="${airplane.id}">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button class="btn btn-danger" type="submit">Usuń</button>
+                                <button class="btn btn-danger" type="submit"><spring:message code="airplanes.remove.submit"/></button>
                             </form>
                         </td>
                     </tr>

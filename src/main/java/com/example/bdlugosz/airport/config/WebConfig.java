@@ -1,14 +1,10 @@
 package com.example.bdlugosz.airport.config;
 
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -27,7 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		//registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+		//registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
 	}
 
 	@Bean
@@ -40,6 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+		source.setDefaultEncoding("UTF-8");
 		source.setBasenames("i18n/messages");  // name of the resource bundle
 		source.setUseCodeAsDefaultMessage(true);
 		return source;
@@ -103,23 +100,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return filterRegistrationBean;
 	}
 
-//	/**
-//	 * Set custom error pages
-//	 * @return EmbeddedServletContainerCustomizer
-//	 */
-//	@Bean
-//	public EmbeddedServletContainerCustomizer containerCustomizer() {
-//
-//		return (container -> {
-//
-//			ErrorPage error400Page = new ErrorPage(HttpStatus.BAD_REQUEST, "/400.html");
-//			ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
-//			ErrorPage error403Page = new ErrorPage(HttpStatus.FORBIDDEN, "/403.html");
-//			ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
-//			ErrorPage error405Page = new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/405.html");
-//			ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
-//
-//			//container.addErrorPages(error401Page, error403Page, error404Page, error405Page, error500Page,error400Page);
-//		});
-//	}
 }

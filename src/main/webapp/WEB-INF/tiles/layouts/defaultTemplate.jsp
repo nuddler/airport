@@ -1,5 +1,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,8 @@
         <%--<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">--%>
         <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/languages.min.css" rel="stylesheet">
-        <%--<link href="${pageContext.request.contextPath}/font/css/fontello.css" rel="stylesheet">--%>
+        <link href="${pageContext.request.contextPath}/font/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
         <%--<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>--%>

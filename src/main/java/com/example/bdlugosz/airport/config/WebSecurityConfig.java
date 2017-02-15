@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserDetailsService userDetailsServiceImpl;
 
@@ -23,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**","/font/**", "/registration", "/tokenVerified*", "/confirmation").permitAll()
+                .antMatchers("/flights/**","/airplanes/**","/users/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

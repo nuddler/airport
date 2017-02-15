@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,4 +33,5 @@ public class BeansConfig {
         RestTemplate restTemplate = new RestTemplate(this.clientHttpRequestFactory());
         return restTemplate;
     }
+
 }

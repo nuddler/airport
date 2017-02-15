@@ -2,16 +2,18 @@ package com.example.bdlugosz.airport.controller;
 
 import com.example.bdlugosz.airport.model.Flight;
 import com.example.bdlugosz.airport.model.Reservation;
+import com.example.bdlugosz.airport.model.User;
 import com.example.bdlugosz.airport.service.FlightService;
 import com.example.bdlugosz.airport.service.ReservationService;
+import com.example.bdlugosz.airport.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,6 +25,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationService reservationService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private FlightService flightService;
@@ -56,7 +61,12 @@ public class ReservationController {
         if (bindingResult.hasErrors()) {
             return "addReservation";
         }
+        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        User user = userService.findByUsername(username);
+        reservation.setUser(user);
+        user.getReservationList().add(reservation);
         reservationService.createReservation(reservation);
+        userService.update(user);
 
         log.info("Created reservation: " + reservation.toString());
         return "redirect:list";
@@ -92,18 +102,4 @@ public class ReservationController {
         reservationService.removeReservation(Long.valueOf(id));
         return "redirect:/reservations/list";
     }
-//
-//    //SEARCH
-//    @RequestMapping(value = "/participant/find")
-//    public String findParticipants(@RequestParam(value="parameter", required=false) String parameter,
-//    		ModelMap model) {
-//    	List<Participant> participants = null;
-//    	if(parameter != null){
-//    		participants = reservationService.findParticipantByNameOrSurname(parameter, parameter);
-//    	}
-//    	model.addAttribute("participants", participants == null ? new ArrayList<Participant>() : participants);
-//    	model.addAttribute("needsShowListButton", true);
-//    	model.addAttribute("wasFinding",true);
-//    	return "participants";
-//    }
 }

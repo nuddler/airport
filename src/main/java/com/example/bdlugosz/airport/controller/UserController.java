@@ -2,21 +2,22 @@ package com.example.bdlugosz.airport.controller;
 
 import com.example.bdlugosz.airport.config.CaptchaSettings;
 import com.example.bdlugosz.airport.ReCaptchaInvalidException;
+import com.example.bdlugosz.airport.model.Airplane;
 import com.example.bdlugosz.airport.model.User;
-import com.example.bdlugosz.airport.service.CaptchaService;
-import com.example.bdlugosz.airport.service.ConfirmationAccountService;
-import com.example.bdlugosz.airport.service.SecurityService;
-import com.example.bdlugosz.airport.service.UserService;
+import com.example.bdlugosz.airport.service.*;
 import com.example.bdlugosz.airport.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -37,6 +38,9 @@ public class UserController {
 
     @Autowired
     private ConfirmationAccountService confirmationAccountService;
+
+    @Autowired
+    private ReportService reportService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -85,5 +89,27 @@ public class UserController {
     @RequestMapping(value={"", "/", "/welcome","hello"})
     public String welcome(Model model) {
         return "welcome";
+    }
+
+    //HOME
+    @RequestMapping(value = "/users/managemnent", method = RequestMethod.GET)
+    public String manageUsers() {
+        return "manageUsers";
+    }
+
+    @RequestMapping(value = "/users/report", method = RequestMethod.GET)
+    public String sendReport() {
+        String username = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        User user = userService.findByUsername(username);
+        reportService.sendEmail(user);
+        return "redirect:/users/managemnent";
+    }
+
+    //GET ALL
+    @RequestMapping(value = "/users/list", method = RequestMethod.GET)
+    public String usersList(ModelMap model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
     }
 }

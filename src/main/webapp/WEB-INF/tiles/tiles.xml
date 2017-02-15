@@ -80,7 +80,7 @@
     </definition>
 
 
-    <!-- Flight-->
+    <!-- Reservations-->
     <definition name="manageReservations" extends="base-definition">
         <put-attribute name="title" value="Manage reservations"/>
         <put-attribute name="body" value="/WEB-INF/jsp/view/reservations/manageReservations.jsp"/>
@@ -101,7 +101,21 @@
         <put-attribute name="body" value="/WEB-INF/jsp/view/reservations/editReservation.jsp"/>
     </definition>
 
+    <!-- Airplane-->
+    <definition name="manageUsers" extends="base-definition">
+        <put-attribute name="title" value="Manage Users"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/view/users/manageUsers.jsp"/>
+    </definition>
 
+    <definition name="users" extends="base-definition">
+        <put-attribute name="title" value="Users"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/view/users/users.jsp"/>
+    </definition>
+
+    <definition name="editUser" extends="base-definition">
+        <put-attribute name="title" value="Edit users"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/view/users/editUser.jsp"/>
+    </definition>
 
 
     <definition name="tokenSent" extends="base-definition">

@@ -17,4 +17,14 @@ public class Reservation {
 
     @ManyToOne
     private User user;
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", flight=" + flight +
+                ", userID=" + (user != null ? user.getId() : user) +
+                '}';
+    }
 }

@@ -31,11 +31,12 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/reservations/managemnent"><spring:message code="app.menu.reservation"/></a></li>
             <c:if test="${admin}">
+                <li><a href="/users/managemnent"><spring:message code="app.menu.users"/></a></li>
                 <li><a href="/flights/managemnent"><spring:message code="app.menu.flights"/></a></li>
                 <li><a href="/airplanes/managemnent"><spring:message code="app.menu.airplanes"/></a></li>
             </c:if>
+            <li><a href="/reservations/managemnent"><spring:message code="app.menu.reservation"/></a></li>
             <li>
                 <c:if test="${login}">
                     <form action="/logout" method="post" id="logoutForm">
@@ -43,12 +44,17 @@
 
                         <div>
                             <spring:message code="app.menu.logout" var="logout"/>
-                            <input type="submit" value="${logout}" class="btn btn-danger"/>
+                            <a class="btn btn-danger" >
+                                <input type="submit" value="${logout}" class="btn btn-danger"/>
+                            </a>
                         </div>
                     </form>
                 </c:if>
-                <c:if test="${empty login}"><a class="btn btn-info" href="/login"><spring:message
-                        code="app.menu.login"/></a></c:if>
+                <c:if test="${empty login}">
+                    <a class="btn btn-info" href="/login">
+                        <spring:message code="app.menu.login"/>
+                    </a>
+                </c:if>
             </li>
         </ul>
     </div>
